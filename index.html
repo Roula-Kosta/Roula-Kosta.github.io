@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Roula Kosta - Atmospheric Physics, Meteorology, Climatology and Numerical Weather Prediction.">
+<meta name="description" content="Roula Kosta - Atmospheric Physics, Meteorology, Climatology and AI Weather Forecasting.">
 <title>Roula Kosta | Atmospheric Physics & Meteorology</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,8 +62,8 @@ header {
 
 nav {
     max-width: 1450px;
-    margin: auto;
     min-height: 78px;
+    margin: auto;
     padding: 12px 5%;
     display: flex;
     justify-content: space-between;
@@ -92,7 +92,7 @@ nav ul {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 25px;
+    gap: 23px;
     flex-wrap: wrap;
 }
 
@@ -200,7 +200,7 @@ nav a:hover {
 
 section {
     padding: 75px 7%;
-    scroll-margin-top: 85px;
+    scroll-margin-top: 95px;
 }
 
 .section-inner {
@@ -234,6 +234,110 @@ section {
 
 .alternate {
     background: var(--soft-bg);
+}
+
+/* AIFS FORECAST - FEATURED FIRST */
+
+.aifs-section {
+    background: linear-gradient(145deg, #f8f8fb, #f9edf2);
+    padding-top: 85px;
+    padding-bottom: 85px;
+}
+
+.aifs-label {
+    display: inline-block;
+    background: var(--pink-light);
+    color: var(--navy);
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.aifs-panel {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 35px;
+    align-items: center;
+    background: white;
+    border: 1px solid #eedce4;
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 14px 35px rgba(16,43,80,0.07);
+}
+
+.aifs-panel h3 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.aifs-panel p {
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.aifs-features {
+    list-style: none;
+    margin: 20px 0 25px;
+}
+
+.aifs-features li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.aifs-features li::before {
+    content: "✦";
+    color: var(--rose);
+    position: absolute;
+    left: 0;
+}
+
+.aifs-visual {
+    min-height: 270px;
+    border-radius: 14px;
+    background:
+        linear-gradient(135deg, rgba(8,29,56,0.94), rgba(35,73,117,0.88)),
+        url("pink-clouds.jpg") center / cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 25px;
+}
+
+.aifs-visual .weather-icon {
+    font-size: 70px;
+    margin-bottom: 10px;
+}
+
+.aifs-visual h3 {
+    color: white;
+    font-size: 27px;
+}
+
+.aifs-visual p {
+    color: #e4eaf4;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.project-status {
+    display: inline-block;
+    background: rgba(233,160,184,0.18);
+    color: #f3c7d7;
+    border: 1px solid rgba(233,160,184,0.5);
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 11px;
+    margin-top: 15px;
+    letter-spacing: 1px;
 }
 
 /* ABOUT */
@@ -408,7 +512,7 @@ section {
 
 .research-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
 }
 
@@ -442,38 +546,7 @@ section {
     color: var(--muted);
 }
 
-/* FORECAST */
-
-.forecast-card {
-    background: linear-gradient(120deg, #102b50, #244e7a);
-    border-radius: 16px;
-    color: white;
-    padding: 38px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
-    overflow: hidden;
-}
-
-.forecast-card h3 {
-    color: white;
-    font-size: 30px;
-    margin-bottom: 10px;
-}
-
-.forecast-card p {
-    color: #e7edf7;
-    max-width: 600px;
-    margin-bottom: 20px;
-}
-
-.forecast-symbol {
-    font-size: 90px;
-    color: var(--pink);
-}
-
-/* CONTACT & FOOTER */
+/* CONTACT */
 
 .contact-card {
     background: var(--navy);
@@ -499,6 +572,8 @@ section {
     font-weight: 700;
 }
 
+/* FOOTER */
+
 footer {
     background: var(--navy-dark);
     color: #d4dce9;
@@ -509,7 +584,7 @@ footer {
 
 /* RESPONSIVE */
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
     nav {
         flex-direction: column;
         padding: 18px 5%;
@@ -525,7 +600,8 @@ footer {
         padding: 65px 7%;
     }
 
-    .about-grid {
+    .about-grid,
+    .aifs-panel {
         grid-template-columns: 1fr;
     }
 
@@ -556,13 +632,12 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .forecast-card {
-        flex-direction: column;
-        align-items: flex-start;
+    .aifs-panel {
+        padding: 25px;
     }
 
-    .forecast-symbol {
-        font-size: 55px;
+    .aifs-panel h3 {
+        font-size: 27px;
     }
 
     .section-heading h2 {
@@ -582,13 +657,13 @@ footer {
     </a>
 
     <ul>
+        <li><a href="#forecast">AIFS Forecast</a></li>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#research">Research</a></li>
-        <li><a href="#forecast">Forecast</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
@@ -611,22 +686,77 @@ footer {
         </p>
 
         <div class="hero-buttons">
-            <a href="#research" class="button primary">Explore Research →</a>
-            <a href="#forecast" class="button secondary">AIFS Forecast →</a>
+            <a href="#forecast" class="button primary">Explore AIFS Forecast →</a>
+            <a href="#research" class="button secondary">Research Interests →</a>
         </div>
     </div>
+</section>
+
+<!-- AIFS - FIRST FEATURED SECTION -->
+
+<section class="aifs-section" id="forecast">
+<div class="section-inner">
+
+    <div class="section-heading">
+        <span class="aifs-label">Featured Research Project</span>
+        <h2>AI Weather Forecasting</h2>
+        <p>
+            Exploring artificial intelligence in numerical
+            weather prediction through the ECMWF
+            Artificial Intelligence Forecasting System.
+        </p>
+    </div>
+
+    <div class="aifs-panel">
+
+        <div>
+            <h3>AIFS Forecast Project</h3>
+
+            <p>
+                An independent project focused on running the
+                Artificial Intelligence Forecasting System (AIFS),
+                using ECMWF Open Data initial conditions to
+                generate independent meteorological forecasts.
+            </p>
+
+            <ul class="aifs-features">
+                <li>ECMWF Open Data and initial conditions</li>
+                <li>Independent AIFS model execution</li>
+                <li>Atmospheric data processing and analysis</li>
+                <li>Automated forecast map generation</li>
+                <li>Weather forecast visualization</li>
+            </ul>
+
+            <a href="#contact" class="button primary">
+                Project Updates →
+            </a>
+        </div>
+
+        <div class="aifs-visual">
+            <div class="weather-icon">🌤</div>
+            <h3>AIFS Weather Forecast</h3>
+            <p>
+                Artificial Intelligence Forecasting System
+            </p>
+            <span class="project-status">PERSONAL RESEARCH PROJECT</span>
+        </div>
+
+    </div>
+</div>
 </section>
 
 <!-- ABOUT -->
 
 <section id="about">
 <div class="section-inner">
+
     <div class="section-heading">
         <h2>About Me</h2>
         <p>Academic background and research interests.</p>
     </div>
 
     <div class="about-grid">
+
         <div class="about-text">
             <p>
                 I am a postgraduate student in Atmospheric Sciences
@@ -657,6 +787,7 @@ footer {
             <p><strong>Tools:</strong> Python, NumPy, Pandas, Xarray, Matplotlib, Seaborn</p>
             <p><strong>Interests:</strong> Numerical Weather Prediction, Climate Research</p>
         </div>
+
     </div>
 </div>
 </section>
@@ -665,6 +796,7 @@ footer {
 
 <section class="alternate" id="experience">
 <div class="section-inner">
+
     <div class="section-heading">
         <h2>Research Experience</h2>
         <p>Research activities and scientific contributions.</p>
@@ -750,6 +882,7 @@ footer {
 
 <section id="education">
 <div class="section-inner">
+
     <div class="section-heading">
         <h2>Education</h2>
         <p>Academic studies and research training.</p>
@@ -802,6 +935,7 @@ footer {
 
 <section class="alternate" id="publications">
 <div class="section-inner">
+
     <div class="section-heading">
         <h2>Publications & Scientific Contributions</h2>
         <p>Selected scientific publications, conference contributions and research outputs.</p>
@@ -842,7 +976,8 @@ footer {
             <h3>First Methane Concentration Measurements at a Suburban-Background Station in Athens, Greece</h3>
             <p>
                 Nastos, P., Eleftheratos, K., Kosta, R.
-                MedCLIVAR2026 Conference, Limassol, Cyprus, 21–25 September 2026.
+                MedCLIVAR2026 Conference, Limassol, Cyprus,
+                21–25 September 2026.
             </p>
         </article>
 
@@ -869,10 +1004,11 @@ footer {
 </div>
 </section>
 
-<!-- RESEARCH -->
+<!-- RESEARCH INTERESTS -->
 
 <section id="research">
 <div class="section-inner">
+
     <div class="section-heading">
         <h2>Research Interests</h2>
         <p>
@@ -905,47 +1041,24 @@ footer {
 </div>
 </section>
 
-<!-- FORECAST -->
-
-<section class="alternate" id="forecast">
-<div class="section-inner">
-    <div class="section-heading">
-        <h2>Numerical Weather Prediction</h2>
-        <p>Exploring artificial intelligence and numerical weather forecasting.</p>
-    </div>
-
-    <div class="forecast-card">
-        <div>
-            <h3>AIFS Forecast Project</h3>
-            <p>
-                An independent project focused on running the
-                Artificial Intelligence Forecasting System (AIFS),
-                processing ECMWF Open Data initial conditions
-                and generating meteorological forecast maps.
-            </p>
-
-            <a href="#contact" class="button primary">
-                Project Updates →
-            </a>
-        </div>
-
-        <div class="forecast-symbol">☀️</div>
-    </div>
-</div>
-</section>
-
 <!-- CONTACT -->
 
 <section id="contact">
 <div class="section-inner">
+
     <div class="contact-card">
         <h2>Get in Touch</h2>
+        <p>
+            For research collaborations, scientific projects
+            and academic communication.
+        </p>
 
         <a href="https://www.linkedin.com/in/roula-kosta-27bab2418/"
            target="_blank" rel="noopener">
             Connect on LinkedIn →
         </a>
     </div>
+
 </div>
 </section>
 
@@ -957,5 +1070,3 @@ footer {
 
 </body>
 </html>
-
-
