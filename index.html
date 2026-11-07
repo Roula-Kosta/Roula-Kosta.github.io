@@ -240,53 +240,79 @@ section {
 
 .aifs-section {
     background: linear-gradient(145deg, #f8f8fb, #f9edf2);
-    padding-top: 85px;
-    padding-bottom: 85px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+.aifs-section .section-heading {
+    margin-bottom: 22px;
+}
+
+.aifs-section .section-heading h2 {
+    margin-bottom: 7px;
+}
+
+.aifs-section .section-heading p {
+    max-width: 800px;
 }
 
 .aifs-label {
     display: inline-block;
     background: var(--pink-light);
     color: var(--navy);
-    padding: 6px 15px;
+    padding: 5px 13px;
     border-radius: 30px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
+/* UNIFIED AIFS PANEL */
+
 .aifs-panel {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 35px;
-    align-items: center;
     background: white;
     border: 1px solid #eedce4;
     border-radius: 18px;
-    padding: 40px;
-    box-shadow: 0 14px 35px rgba(16,43,80,0.07);
+    padding: 28px 32px;
+    box-shadow: 0 12px 30px rgba(16,43,80,0.06);
 }
 
-.aifs-panel h3 {
-    font-size: 32px;
-    margin-bottom: 15px;
+.aifs-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 20px;
 }
 
-.aifs-panel p {
+.aifs-description {
+    max-width: 850px;
+}
+
+.aifs-description h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.aifs-description p {
     color: var(--muted);
-    margin-bottom: 18px;
+    font-size: 14px;
+    margin-bottom: 13px;
 }
 
 .aifs-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
     list-style: none;
-    margin: 20px 0 25px;
 }
 
 .aifs-features li {
-    margin-bottom: 10px;
-    padding-left: 25px;
+    color: var(--text);
+    font-size: 12px;
+    padding-left: 17px;
     position: relative;
 }
 
@@ -297,93 +323,58 @@ section {
     left: 0;
 }
 
-.aifs-visual {
-    min-height: 270px;
-    border-radius: 14px;
-    background:
-        linear-gradient(135deg, rgba(8,29,56,0.94), rgba(35,73,117,0.88)),
-        url("pink-clouds.jpg") center / cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 25px;
-}
-
-.aifs-visual .weather-icon {
-    font-size: 70px;
-    margin-bottom: 10px;
-}
-
-.aifs-visual h3 {
-    color: white;
-    font-size: 27px;
-}
-
-.aifs-visual p {
-    color: #e4eaf4;
-    margin-top: 8px;
-    font-size: 13px;
-}
-
-.project-status {
+.aifs-status {
+    flex-shrink: 0;
     display: inline-block;
-    background: rgba(233,160,184,0.18);
-    color: #f3c7d7;
-    border: 1px solid rgba(233,160,184,0.5);
+    background: var(--pink-light);
+    color: var(--navy);
     border-radius: 20px;
-    padding: 6px 13px;
-    font-size: 11px;
-    margin-top: 15px;
-    letter-spacing: 1px;
+    padding: 7px 13px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
 }
 
-/* AIFS VIDEO PLAYER */
+/* FORECAST PLAYER */
 
 .aifs-player {
-    margin-top: 35px;
-    background: white;
-    border: 1px solid #eedce4;
-    border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 14px 35px rgba(16,43,80,0.07);
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
 }
 
 .aifs-player-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 22px;
+    margin-bottom: 15px;
 }
 
 .aifs-player-header h3 {
-    font-size: 25px;
+    font-size: 21px;
 }
 
 .aifs-run-info {
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .aifs-variable-buttons {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
 }
 
 .aifs-variable-btn {
-    padding: 11px 20px;
+    padding: 9px 17px;
     border-radius: 25px;
     border: 1px solid #e8cbd6;
     background: white;
     color: var(--navy);
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     cursor: pointer;
     transition: 0.3s;
@@ -402,7 +393,7 @@ section {
 .aifs-video-container {
     width: 100%;
     background: var(--navy-dark);
-    border-radius: 13px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -415,9 +406,9 @@ section {
 }
 
 .aifs-video-caption {
-    margin-top: 17px;
+    margin-top: 10px;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .aifs-video-caption strong {
@@ -427,24 +418,30 @@ section {
 .aifs-model-details {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 25px;
+    gap: 10px;
+    margin-top: 18px;
 }
 
 .aifs-detail {
     background: var(--soft-bg);
-    padding: 15px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 9px;
     text-align: center;
 }
 
 .aifs-detail strong {
     display: block;
     color: var(--navy);
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .aifs-detail span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.aifs-note {
+    margin-top: 12px;
     color: var(--muted);
     font-size: 11px;
 }
@@ -709,9 +706,12 @@ footer {
         padding: 65px 7%;
     }
 
-    .about-grid,
-    .aifs-panel {
+    .about-grid {
         grid-template-columns: 1fr;
+    }
+
+    .aifs-intro {
+        flex-direction: column;
     }
 
     .research-grid {
@@ -720,16 +720,16 @@ footer {
 }
 
 @media (max-width: 700px) {
-    .aifs-player {
-        padding: 18px;
-    }
-
     .aifs-model-details {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .aifs-variable-btn {
         flex: 1 1 100%;
+    }
+
+    .aifs-panel {
+        padding: 22px;
     }
 }
 
@@ -755,16 +755,17 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .aifs-panel {
-        padding: 25px;
-    }
-
-    .aifs-panel h3 {
-        font-size: 27px;
-    }
-
     .section-heading h2 {
         font-size: 29px;
+    }
+
+    .aifs-section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .aifs-player-header h3 {
+        font-size: 19px;
     }
 }
 </style>
@@ -815,7 +816,7 @@ footer {
     </div>
 </section>
 
-<!-- AIFS FORECAST SECTION -->
+<!-- AIFS FORECAST PROJECT -->
 
 <section class="aifs-section" id="forecast">
 <div class="section-inner">
@@ -832,134 +833,127 @@ footer {
         </p>
     </div>
 
+    <!-- ONE UNIFIED AIFS PANEL -->
+
     <div class="aifs-panel">
 
-        <div>
-            <h3>AIFS Forecast Project</h3>
+        <div class="aifs-intro">
 
-            <p>
-                An independent project focused on running the
-                Artificial Intelligence Forecasting System (AIFS),
-                using ECMWF Open Data initial conditions to
-                generate meteorological forecasts.
+            <div class="aifs-description">
+                <h3>AIFS Forecast Project</h3>
+
+                <p>
+                    An independent project focused on running the
+                    Artificial Intelligence Forecasting System (AIFS),
+                    using ECMWF Open Data initial conditions to
+                    generate meteorological forecasts.
+                </p>
+
+                <ul class="aifs-features">
+                    <li>ECMWF Open Data</li>
+                    <li>Independent AIFS execution</li>
+                    <li>Atmospheric data processing</li>
+                    <li>Automated map generation</li>
+                    <li>Global, European and regional forecasts</li>
+                </ul>
+            </div>
+
+            <span class="aifs-status">PERSONAL RESEARCH PROJECT</span>
+
+        </div>
+
+        <!-- FORECAST VIDEO PLAYER -->
+
+        <div class="aifs-player">
+
+            <div class="aifs-player-header">
+                <h3>Forecast Visualization</h3>
+
+                <span class="aifs-run-info">
+                    Model initialization: 06 November 2026 · 06 UTC
+                </span>
+            </div>
+
+            <div class="aifs-variable-buttons">
+
+                <button
+                    class="aifs-variable-btn active"
+                    data-video="AIFS_Temperature_2m_240h.mp4"
+                    data-title="2m Temperature">
+                    2m Temperature
+                </button>
+
+                <button
+                    class="aifs-variable-btn"
+                    data-video="AIFS_MSL_240h.mp4"
+                    data-title="Mean Sea Level Pressure">
+                    Mean Sea Level Pressure
+                </button>
+
+                <button
+                    class="aifs-variable-btn"
+                    data-video="AIFS_Precipitation_240h.mp4"
+                    data-title="6-hour Precipitation">
+                    6-hour Precipitation
+                </button>
+
+            </div>
+
+            <div class="aifs-video-container">
+
+                <video
+                    id="aifsForecastVideo"
+                    controls
+                    muted
+                    playsinline
+                    preload="metadata">
+
+                    <source
+                        src="assets/aifs/AIFS_Temperature_2m_240h.mp4"
+                        type="video/mp4">
+
+                    Your browser does not support HTML5 video.
+
+                </video>
+
+            </div>
+
+            <div class="aifs-video-caption">
+                <strong id="aifsCurrentVariable">2m Temperature</strong>
+                <span> · Global | Europe | Greece</span>
+            </div>
+
+            <div class="aifs-model-details">
+
+                <div class="aifs-detail">
+                    <strong>AIFS Single</strong>
+                    <span>Forecast Model</span>
+                </div>
+
+                <div class="aifs-detail">
+                    <strong>0.25°</strong>
+                    <span>Grid Resolution</span>
+                </div>
+
+                <div class="aifs-detail">
+                    <strong>+240h</strong>
+                    <span>Forecast Range</span>
+                </div>
+
+                <div class="aifs-detail">
+                    <strong>6 hours</strong>
+                    <span>Time Interval</span>
+                </div>
+
+            </div>
+
+            <p class="aifs-note">
+                Deterministic forecast · Forecast data initialized on
+                06 November 2026 at 06 UTC.
+                Precipitation represents 6-hour accumulated amounts.
             </p>
 
-            <ul class="aifs-features">
-                <li>ECMWF Open Data and initial conditions</li>
-                <li>Independent AIFS model execution</li>
-                <li>Atmospheric data processing and analysis</li>
-                <li>Automated forecast map generation</li>
-                <li>Global, European and regional visualization</li>
-            </ul>
-
-            <span class="project-status">
-                PERSONAL RESEARCH PROJECT
-            </span>
         </div>
-
-        <div class="aifs-visual">
-            <div class="weather-icon">🌤</div>
-            <h3>AIFS Weather Forecast</h3>
-            <p>
-                Artificial Intelligence Forecasting System
-            </p>
-            <span class="project-status">
-                EXPERIMENTAL FORECAST
-            </span>
-        </div>
-
-    </div>
-
-    <!-- FORECAST VIDEO PLAYER -->
-
-    <div class="aifs-player">
-
-        <div class="aifs-player-header">
-            <h3>Forecast Visualization</h3>
-
-            <span class="aifs-run-info">
-                Model initialization: 06 November 2026 · 06 UTC
-            </span>
-        </div>
-
-        <div class="aifs-variable-buttons">
-
-            <button
-                class="aifs-variable-btn active"
-                data-video="AIFS_Temperature_2m_240h.mp4"
-                data-title="2m Temperature">
-                2m Temperature
-            </button>
-
-            <button
-                class="aifs-variable-btn"
-                data-video="AIFS_MSL_240h.mp4"
-                data-title="Mean Sea Level Pressure">
-                Mean Sea Level Pressure
-            </button>
-
-            <button
-                class="aifs-variable-btn"
-                data-video="AIFS_Precipitation_240h.mp4"
-                data-title="6-hour Precipitation">
-                6-hour Precipitation
-            </button>
-
-        </div>
-
-        <div class="aifs-video-container">
-
-            <video
-                id="aifsForecastVideo"
-                controls
-                muted
-                playsinline
-                preload="metadata">
-
-                <source
-                    src="assets/aifs/AIFS_Temperature_2m_240h.mp4"
-                    type="video/mp4">
-
-                Your browser does not support HTML5 video.
-
-            </video>
-
-        </div>
-
-        <div class="aifs-video-caption">
-            <strong id="aifsCurrentVariable">2m Temperature</strong>
-            <span> · Global | Europe | Greece</span>
-        </div>
-
-        <div class="aifs-model-details">
-
-            <div class="aifs-detail">
-                <strong>AIFS Single</strong>
-                <span>Forecast Model</span>
-            </div>
-
-            <div class="aifs-detail">
-                <strong>0.25°</strong>
-                <span>Grid Resolution</span>
-            </div>
-
-            <div class="aifs-detail">
-                <strong>+240h</strong>
-                <span>Forecast Range</span>
-            </div>
-
-            <div class="aifs-detail">
-                <strong>6 hours</strong>
-                <span>Time Interval</span>
-            </div>
-
-        </div>
-
-        <p class="aifs-video-caption">
-            Deterministic forecast · Forecast data initialized on
-            06 November 2026 at 06 UTC.
-            Precipitation represents 6-hour accumulated amounts.
-        </p>
 
     </div>
 
@@ -1294,12 +1288,8 @@ footer {
 <script>
 
 const aifsButtons = document.querySelectorAll(".aifs-variable-btn");
-
 const aifsVideo = document.getElementById("aifsForecastVideo");
-
-const aifsCurrentVariable = document.getElementById(
-    "aifsCurrentVariable"
-);
+const aifsCurrentVariable = document.getElementById("aifsCurrentVariable");
 
 aifsButtons.forEach(button => {
 
@@ -1315,7 +1305,6 @@ aifsButtons.forEach(button => {
         this.classList.add("active");
 
         aifsVideo.src = "assets/aifs/" + videoFile;
-
         aifsVideo.load();
 
         aifsCurrentVariable.textContent = variableName;
