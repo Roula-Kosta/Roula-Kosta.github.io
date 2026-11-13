@@ -446,6 +446,117 @@ section {
     font-size: 11px;
 }
 
+/* ENSEMBLE FORECAST PLAYER */
+
+.ensemble-player {
+    border-top: 1px solid var(--border);
+    margin-top: 28px;
+    padding-top: 24px;
+}
+
+.ensemble-description {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 5px 0 18px;
+}
+
+.ensemble-mode-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.ensemble-mode-btn {
+    padding: 9px 20px;
+    border-radius: 25px;
+    border: 1px solid #e8cbd6;
+    background: white;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ensemble-mode-btn:hover {
+    background: var(--pink-light);
+}
+
+.ensemble-mode-btn.active {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+}
+
+.ensemble-variable-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.ensemble-variable-btn {
+    padding: 9px 17px;
+    border-radius: 25px;
+    border: 1px solid #e8cbd6;
+    background: white;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ensemble-variable-btn:hover {
+    background: var(--pink-light);
+}
+
+.ensemble-variable-btn.active {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+}
+
+.ensemble-video-container {
+    width: 100%;
+    background: var(--navy-dark);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.ensemble-video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 20 / 9;
+    object-fit: contain;
+}
+
+.ensemble-caption {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.ensemble-caption strong {
+    color: var(--navy);
+}
+
+.ensemble-note {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@media (max-width: 700px) {
+    .ensemble-variable-btn {
+        flex: 1 1 100%;
+    }
+}
+
 /* ABOUT */
 
 .about-grid {
