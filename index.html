@@ -117,7 +117,6 @@ nav a:hover {
     display: flex;
     align-items: center;
     color: white;
-
     background:
         linear-gradient(
             90deg,
@@ -302,27 +301,6 @@ section {
     margin-bottom: 13px;
 }
 
-.aifs-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    list-style: none;
-}
-
-.aifs-features li {
-    color: var(--text);
-    font-size: 12px;
-    padding-left: 17px;
-    position: relative;
-}
-
-.aifs-features li::before {
-    content: "✦";
-    color: var(--rose);
-    position: absolute;
-    left: 0;
-}
-
 .aifs-status {
     flex-shrink: 0;
     display: inline-block;
@@ -390,14 +368,16 @@ section {
     border-color: var(--navy);
 }
 
-.aifs-video-container {
+.aifs-video-container,
+.ensemble-video-container {
     width: 100%;
     background: var(--navy-dark);
     border-radius: 12px;
     overflow: hidden;
 }
 
-.aifs-video-container video {
+.aifs-video-container video,
+.ensemble-video-container video {
     display: block;
     width: 100%;
     height: auto;
@@ -405,13 +385,15 @@ section {
     object-fit: contain;
 }
 
-.aifs-video-caption {
+.aifs-video-caption,
+.ensemble-caption {
     margin-top: 10px;
     color: var(--muted);
     font-size: 12px;
 }
 
-.aifs-video-caption strong {
+.aifs-video-caption strong,
+.ensemble-caption strong {
     color: var(--navy);
 }
 
@@ -460,36 +442,7 @@ section {
     margin: 5px 0 18px;
 }
 
-.ensemble-mode-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-}
-
-.ensemble-mode-btn {
-    padding: 9px 20px;
-    border-radius: 25px;
-    border: 1px solid #e8cbd6;
-    background: white;
-    color: var(--navy);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.ensemble-mode-btn:hover {
-    background: var(--pink-light);
-}
-
-.ensemble-mode-btn.active {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-}
-
+.ensemble-mode-buttons,
 .ensemble-variable-buttons {
     display: flex;
     gap: 10px;
@@ -497,6 +450,7 @@ section {
     margin-bottom: 16px;
 }
 
+.ensemble-mode-btn,
 .ensemble-variable-btn {
     padding: 9px 17px;
     border-radius: 25px;
@@ -510,51 +464,22 @@ section {
     transition: 0.3s;
 }
 
+.ensemble-mode-btn:hover,
 .ensemble-variable-btn:hover {
     background: var(--pink-light);
 }
 
+.ensemble-mode-btn.active,
 .ensemble-variable-btn.active {
     background: var(--navy);
     color: white;
     border-color: var(--navy);
 }
 
-.ensemble-video-container {
-    width: 100%;
-    background: var(--navy-dark);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.ensemble-video-container video {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 20 / 9;
-    object-fit: contain;
-}
-
-.ensemble-caption {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.ensemble-caption strong {
-    color: var(--navy);
-}
-
 .ensemble-note {
     margin-top: 12px;
     color: var(--muted);
     font-size: 11px;
-}
-
-@media (max-width: 700px) {
-    .ensemble-variable-btn {
-        flex: 1 1 100%;
-    }
 }
 
 /* ABOUT */
@@ -835,7 +760,8 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .aifs-variable-btn {
+    .aifs-variable-btn,
+    .ensemble-variable-btn {
         flex: 1 1 100%;
     }
 
@@ -944,8 +870,6 @@ footer {
         </p>
     </div>
 
-    <!-- ONE UNIFIED AIFS PANEL -->
-
     <div class="aifs-panel">
 
         <div class="aifs-intro">
@@ -959,14 +883,13 @@ footer {
                     using ECMWF Open Data initial conditions to
                     generate meteorological forecasts.
                 </p>
-
             </div>
 
             <span class="aifs-status">PERSONAL RESEARCH PROJECT</span>
 
         </div>
 
-        <!-- FORECAST VIDEO PLAYER -->
+        <!-- DETERMINISTIC FORECAST PLAYER -->
 
         <div class="aifs-player">
 
@@ -980,74 +903,61 @@ footer {
 
             <div class="aifs-variable-buttons">
 
-    <button
-        class="aifs-variable-btn active"
-        data-video="AIFS_Temperature_2m_240h.mp4"
-        data-title="2m Temperature">
-        2m Temperature
-    </button>
+                <button class="aifs-variable-btn active"
+                    data-video="AIFS_Temperature_2m_240h.mp4"
+                    data-title="2m Temperature">
+                    2m Temperature
+                </button>
 
-    <button
-        class="aifs-variable-btn"
-        data-video="AIFS_MSL_240h.mp4"
-        data-title="Mean Sea Level Pressure">
-        Mean Sea Level Pressure
-    </button>
+                <button class="aifs-variable-btn"
+                    data-video="AIFS_MSL_240h.mp4"
+                    data-title="Mean Sea Level Pressure">
+                    Mean Sea Level Pressure
+                </button>
 
-    <button
-        class="aifs-variable-btn"
-        data-video="AIFS_Precipitation_240h.mp4"
-        data-title="6-hour Precipitation">
-        6-hour Precipitation
-    </button>
+                <button class="aifs-variable-btn"
+                    data-video="AIFS_Precipitation_240h.mp4"
+                    data-title="6-hour Precipitation">
+                    6-hour Precipitation
+                </button>
 
-    <button
-        class="aifs-variable-btn"
-        data-video="AIFS_10m_Wind_Speed_240h.mp4"
-        data-title="10m Wind Speed">
-        10m Wind Speed
-    </button>
+                <button class="aifs-variable-btn"
+                    data-video="AIFS_10m_Wind_Speed_240h.mp4"
+                    data-title="10m Wind Speed">
+                    10m Wind Speed
+                </button>
 
-    <button
-        class="aifs-variable-btn"
-        data-video="AIFS_850hPa_Temperature_240h.mp4"
-        data-title="850 hPa Temperature">
-        850 hPa Temperature
-    </button>
+                <button class="aifs-variable-btn"
+                    data-video="AIFS_850hPa_Temperature_240h.mp4"
+                    data-title="850 hPa Temperature">
+                    850 hPa Temperature
+                </button>
 
-    <button
-        class="aifs-variable-btn"
-        data-video="AIFS_500hPa_Geopotential_Height_240h.mp4"
-        data-title="500 hPa Geopotential Height">
-        500 hPa Geopotential Height
-    </button>
+                <button class="aifs-variable-btn"
+                    data-video="AIFS_500hPa_Geopotential_Height_240h.mp4"
+                    data-title="500 hPa Geopotential Height">
+                    500 hPa Geopotential Height
+                </button>
 
-    <button
-        class="aifs-variable-btn"
-        data-video="AIFS_850hPa_Wind_Speed_240h.mp4"
-        data-title="850 hPa Wind Speed">
-        850 hPa Wind Speed
-    </button>
+                <button class="aifs-variable-btn"
+                    data-video="AIFS_850hPa_Wind_Speed_240h.mp4"
+                    data-title="850 hPa Wind Speed">
+                    850 hPa Wind Speed
+                </button>
 
-</div>
+            </div>
 
             <div class="aifs-video-container">
-
                 <video
                     id="aifsForecastVideo"
                     controls
                     muted
                     playsinline
-                    preload="metadata">
-
-                    <source
-                        src="assets/aifs/AIFS_Temperature_2m_240h.mp4"
-                        type="video/mp4">
+                    preload="metadata"
+                    src="assets/aifs/AIFS_Temperature_2m_240h.mp4">
 
                     Your browser does not support HTML5 video.
-
                 </video>
-
             </div>
 
             <div class="aifs-video-caption">
@@ -1083,6 +993,102 @@ footer {
                 Deterministic forecast · Forecast data initialized on
                 06 November 2026 at 06 UTC.
                 Precipitation represents 6-hour accumulated amounts.
+            </p>
+
+        </div>
+
+        <!-- ENSEMBLE FORECAST PLAYER -->
+
+        <div class="ensemble-player">
+
+            <div class="aifs-player-header">
+                <h3>Ensemble Forecast Visualization</h3>
+
+                <span class="aifs-run-info">
+                    11-member Ensemble · Forecast Range: +240h
+                </span>
+            </div>
+
+            <p class="ensemble-description">
+                Explore the ensemble mean and spread across 11 forecast members.
+            </p>
+
+            <div class="ensemble-mode-buttons">
+
+                <button class="ensemble-mode-btn active" data-mode="mean">
+                    Ensemble Mean
+                </button>
+
+                <button class="ensemble-mode-btn" data-mode="spread">
+                    Ensemble Spread
+                </button>
+
+            </div>
+
+            <div class="ensemble-variable-buttons">
+
+                <button class="ensemble-variable-btn active"
+                    data-variable="t2m" data-title="2m Temperature">
+                    2m Temperature
+                </button>
+
+                <button class="ensemble-variable-btn"
+                    data-variable="msl" data-title="Mean Sea Level Pressure">
+                    Mean Sea Level Pressure
+                </button>
+
+                <button class="ensemble-variable-btn"
+                    data-variable="tp" data-title="6-hour Precipitation">
+                    6-hour Precipitation
+                </button>
+
+                <button class="ensemble-variable-btn"
+                    data-variable="wind10" data-title="10m Wind Speed">
+                    10m Wind Speed
+                </button>
+
+                <button class="ensemble-variable-btn"
+                    data-variable="z500" data-title="500 hPa Geopotential Height">
+                    500 hPa Geopotential Height
+                </button>
+
+                <button class="ensemble-variable-btn"
+                    data-variable="t850" data-title="850 hPa Temperature">
+                    850 hPa Temperature
+                </button>
+
+                <button class="ensemble-variable-btn"
+                    data-variable="wind850" data-title="850 hPa Wind Speed">
+                    850 hPa Wind Speed
+                </button>
+
+            </div>
+
+            <div class="ensemble-video-container">
+                <video
+                    id="aifsEnsembleVideo"
+                    controls
+                    muted
+                    playsinline
+                    preload="metadata"
+                    src="assets/aifs/ensemble/mean/t2m_mean.mp4">
+
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+
+            <div class="ensemble-caption">
+                <strong id="aifsEnsembleCurrentVariable">
+                    2m Temperature
+                </strong>
+                <span id="aifsEnsembleCurrentMode"> · Ensemble Mean</span>
+            </div>
+
+            <p class="ensemble-note">
+                Ensemble Mean represents the average forecast across
+                the 11 members. Ensemble Spread represents their
+                standard deviation and provides an indication of
+                forecast uncertainty.
             </p>
 
         </div>
@@ -1411,9 +1417,11 @@ footer {
     © 2026 Roula Kosta · Atmospheric Physics & Meteorology
 </footer>
 
-<!-- AIFS VIDEO PLAYER SCRIPT -->
+<!-- AIFS VIDEO PLAYER SCRIPTS -->
 
 <script>
+
+// DETERMINISTIC AIFS PLAYER
 
 const aifsButtons = document.querySelectorAll(".aifs-variable-btn");
 const aifsVideo = document.getElementById("aifsForecastVideo");
@@ -1437,9 +1445,91 @@ aifsButtons.forEach(button => {
 
         aifsCurrentVariable.textContent = variableName;
 
-        aifsVideo.play().catch(() => {
-            // Playback can be started manually if needed.
+        aifsVideo.play().catch(() => {});
+
+    });
+
+});
+
+
+// ENSEMBLE AIFS PLAYER
+
+const ensembleVideo = document.getElementById("aifsEnsembleVideo");
+
+const ensembleModeButtons =
+    document.querySelectorAll(".ensemble-mode-btn");
+
+const ensembleVariableButtons =
+    document.querySelectorAll(".ensemble-variable-btn");
+
+const ensembleCurrentVariable =
+    document.getElementById("aifsEnsembleCurrentVariable");
+
+const ensembleCurrentMode =
+    document.getElementById("aifsEnsembleCurrentMode");
+
+let currentEnsembleMode = "mean";
+let currentEnsembleVariable = "t2m";
+let currentEnsembleTitle = "2m Temperature";
+
+function updateEnsembleVideo() {
+
+    const filename =
+        currentEnsembleVariable + "_" + currentEnsembleMode + ".mp4";
+
+    ensembleVideo.src =
+        "assets/aifs/ensemble/" +
+        currentEnsembleMode + "/" + filename;
+
+    ensembleVideo.load();
+
+    ensembleCurrentVariable.textContent = currentEnsembleTitle;
+
+    ensembleCurrentMode.textContent =
+        currentEnsembleMode === "mean"
+            ? " · Ensemble Mean"
+            : " · Ensemble Spread";
+
+    ensembleVideo.play().catch(() => {});
+
+}
+
+// Mean / Spread selection
+
+ensembleModeButtons.forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        currentEnsembleMode = this.dataset.mode;
+
+        ensembleModeButtons.forEach(btn => {
+            btn.classList.remove("active");
         });
+
+        this.classList.add("active");
+
+        updateEnsembleVideo();
+
+    });
+
+});
+
+// Variable selection
+
+ensembleVariableButtons.forEach(button => {
+
+    button.addEventListener("click", function() {
+
+        currentEnsembleVariable = this.dataset.variable;
+        currentEnsembleTitle = this.dataset.title;
+
+        ensembleVariableButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        updateEnsembleVideo();
 
     });
 
