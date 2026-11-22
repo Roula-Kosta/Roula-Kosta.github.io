@@ -482,6 +482,39 @@ section {
     font-size: 11px;
 }
 
+/* ENSEMBLE PROBABILITY THRESHOLDS */
+.ensemble-threshold-label {
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+    margin: 2px 0 10px;
+}
+.ensemble-threshold-buttons {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin: 0 0 17px;
+}
+.ensemble-threshold-btn {
+    padding: 8px 14px;
+    border-radius: 22px;
+    border: 1px solid #e8cbd6;
+    background: #fff;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.ensemble-threshold-btn:hover { background: var(--pink-light); }
+.ensemble-threshold-btn.active {
+    background: var(--rose);
+    color: white;
+    border-color: var(--rose);
+}
+
+
 /* ABOUT */
 
 .about-grid {
@@ -998,99 +1031,58 @@ footer {
         </div>
 
         <!-- ENSEMBLE FORECAST PLAYER -->
-
         <div class="ensemble-player">
-
             <div class="aifs-player-header">
                 <h3>Ensemble Forecast Visualization</h3>
-
-                <span class="aifs-run-info">
-                    11-member Ensemble · Forecast Range: +240h
-                </span>
+                <span class="aifs-run-info">11-member Ensemble · 0.25° Resolution · +240h</span>
             </div>
 
             <p class="ensemble-description">
-                Explore the ensemble mean and spread across 11 forecast members.
+                Explore the ensemble mean, forecast spread and probabilities
+                of selected meteorological events across 11 AIFS ensemble members.
             </p>
 
             <div class="ensemble-mode-buttons">
-
-                <button class="ensemble-mode-btn active" data-mode="mean">
-                    Ensemble Mean
-                </button>
-
-                <button class="ensemble-mode-btn" data-mode="spread">
-                    Ensemble Spread
-                </button>
-
+                <button class="ensemble-mode-btn active" data-mode="mean">Ensemble Mean</button>
+                <button class="ensemble-mode-btn" data-mode="spread">Ensemble Spread</button>
+                <button class="ensemble-mode-btn" data-mode="probability">Probability</button>
             </div>
 
-            <div class="ensemble-variable-buttons">
+            <div class="ensemble-variable-buttons" id="ensembleVariableButtons">
+                <button class="ensemble-variable-btn active" data-variable="t2m" data-title="2m Temperature">2m Temperature</button>
+                <button class="ensemble-variable-btn" data-variable="msl" data-title="Mean Sea Level Pressure">Mean Sea Level Pressure</button>
+                <button class="ensemble-variable-btn" data-variable="tp" data-title="6-hour Precipitation">6-hour Precipitation</button>
+                <button class="ensemble-variable-btn" data-variable="wind10" data-title="10m Wind Speed">10m Wind Speed</button>
+                <button class="ensemble-variable-btn" data-variable="wind100" data-title="100m Wind Speed">100m Wind Speed</button>
+                <button class="ensemble-variable-btn" data-variable="z500" data-title="500 hPa Geopotential Height">500 hPa Geopotential Height</button>
+                <button class="ensemble-variable-btn" data-variable="t850" data-title="850 hPa Temperature">850 hPa Temperature</button>
+                <button class="ensemble-variable-btn" data-variable="wind850" data-title="850 hPa Wind Speed">850 hPa Wind Speed</button>
+                <button class="ensemble-variable-btn" data-variable="q850" data-title="850 hPa Specific Humidity">850 hPa Specific Humidity</button>
+            </div>
 
-                <button class="ensemble-variable-btn active"
-                    data-variable="t2m" data-title="2m Temperature">
-                    2m Temperature
-                </button>
-
-                <button class="ensemble-variable-btn"
-                    data-variable="msl" data-title="Mean Sea Level Pressure">
-                    Mean Sea Level Pressure
-                </button>
-
-                <button class="ensemble-variable-btn"
-                    data-variable="tp" data-title="6-hour Precipitation">
-                    6-hour Precipitation
-                </button>
-
-                <button class="ensemble-variable-btn"
-                    data-variable="wind10" data-title="10m Wind Speed">
-                    10m Wind Speed
-                </button>
-
-                <button class="ensemble-variable-btn"
-                    data-variable="z500" data-title="500 hPa Geopotential Height">
-                    500 hPa Geopotential Height
-                </button>
-
-                <button class="ensemble-variable-btn"
-                    data-variable="t850" data-title="850 hPa Temperature">
-                    850 hPa Temperature
-                </button>
-
-                <button class="ensemble-variable-btn"
-                    data-variable="wind850" data-title="850 hPa Wind Speed">
-                    850 hPa Wind Speed
-                </button>
-
+            <div id="ensembleThresholdArea" hidden>
+                <div class="ensemble-threshold-label">Select probability threshold</div>
+                <div class="ensemble-threshold-buttons" id="ensembleThresholdButtons"></div>
             </div>
 
             <div class="ensemble-video-container">
-                <video
-                    id="aifsEnsembleVideo"
-                    controls
-                    muted
-                    playsinline
-                    preload="metadata"
+                <video id="aifsEnsembleVideo" controls muted playsinline preload="metadata"
                     src="assets/aifs/ensemble/mean/t2m_mean.mp4">
-
                     Your browser does not support HTML5 video.
                 </video>
             </div>
 
             <div class="ensemble-caption">
-                <strong id="aifsEnsembleCurrentVariable">
-                    2m Temperature
-                </strong>
+                <strong id="aifsEnsembleCurrentVariable">2m Temperature</strong>
                 <span id="aifsEnsembleCurrentMode"> · Ensemble Mean</span>
             </div>
 
-            <p class="ensemble-note">
-                Ensemble Mean represents the average forecast across
-                the 11 members. Ensemble Spread represents their
-                standard deviation and provides an indication of
-                forecast uncertainty.
+            <p class="ensemble-note" id="ensembleNote">
+                Ensemble Mean represents the average forecast across the 11 members.
+                Ensemble Spread represents the sample standard deviation of the members.
+                Probability maps show the percentage of ensemble members meeting
+                the selected threshold.
             </p>
-
         </div>
 
     </div>
@@ -1452,87 +1444,169 @@ aifsButtons.forEach(button => {
 });
 
 
-// ENSEMBLE AIFS PLAYER
+// ENSEMBLE AIFS PLAYER: MEAN, SPREAD AND PROBABILITY
 
 const ensembleVideo = document.getElementById("aifsEnsembleVideo");
-
-const ensembleModeButtons =
-    document.querySelectorAll(".ensemble-mode-btn");
-
-const ensembleVariableButtons =
-    document.querySelectorAll(".ensemble-variable-btn");
-
-const ensembleCurrentVariable =
-    document.getElementById("aifsEnsembleCurrentVariable");
-
-const ensembleCurrentMode =
-    document.getElementById("aifsEnsembleCurrentMode");
+const ensembleModeButtons = document.querySelectorAll(".ensemble-mode-btn");
+const ensembleVariableButtons = document.querySelectorAll(".ensemble-variable-btn");
+const ensembleCurrentVariable = document.getElementById("aifsEnsembleCurrentVariable");
+const ensembleCurrentMode = document.getElementById("aifsEnsembleCurrentMode");
+const ensembleThresholdArea = document.getElementById("ensembleThresholdArea");
+const ensembleThresholdButtons = document.getElementById("ensembleThresholdButtons");
+const ensembleNote = document.getElementById("ensembleNote");
 
 let currentEnsembleMode = "mean";
 let currentEnsembleVariable = "t2m";
 let currentEnsembleTitle = "2m Temperature";
+let currentProbabilityThreshold = null;
+
+const probabilityThresholds = {
+    msl: [
+        { label: "≤ 1000 hPa", file: "msl_prob_le_1000hpa.mp4" },
+        { label: "≤ 990 hPa", file: "msl_prob_le_990hpa.mp4" },
+        { label: "≤ 980 hPa", file: "msl_prob_le_980hpa.mp4" }
+    ],
+    q850: [
+        { label: "≥ 2 g/kg", file: "q850_prob_ge_2gkg.mp4" },
+        { label: "≥ 4 g/kg", file: "q850_prob_ge_4gkg.mp4" },
+        { label: "≥ 6 g/kg", file: "q850_prob_ge_6gkg.mp4" }
+    ],
+    t2m: [
+        { label: "≤ 0°C", file: "t2m_prob_le_0c.mp4" },
+        { label: "≤ 5°C", file: "t2m_prob_le_5c.mp4" },
+        { label: "≥ 30°C", file: "t2m_prob_ge_30c.mp4" },
+        { label: "≥ 35°C", file: "t2m_prob_ge_35c.mp4" }
+    ],
+    t850: [
+        { label: "≤ 0°C", file: "t850_prob_le_0c.mp4" },
+        { label: "≤ −5°C", file: "t850_prob_le_m5c.mp4" },
+        { label: "≤ −10°C", file: "t850_prob_le_m10c.mp4" },
+        { label: "≤ −15°C", file: "t850_prob_le_m15c.mp4" }
+    ],
+    tp: [
+        { label: "≥ 1 mm / 6h", file: "tp_prob_ge_1mm.mp4" },
+        { label: "≥ 5 mm / 6h", file: "tp_prob_ge_5mm.mp4" },
+        { label: "≥ 10 mm / 6h", file: "tp_prob_ge_10mm.mp4" },
+        { label: "≥ 20 mm / 6h", file: "tp_prob_ge_20mm.mp4" }
+    ],
+    wind10: [
+        { label: "≥ 10 m/s", file: "wind10_prob_ge_10ms.mp4" },
+        { label: "≥ 15 m/s", file: "wind10_prob_ge_15ms.mp4" },
+        { label: "≥ 20 m/s", file: "wind10_prob_ge_20ms.mp4" },
+        { label: "≥ 25 m/s", file: "wind10_prob_ge_25ms.mp4" }
+    ],
+    wind100: [
+        { label: "≥ 15 m/s", file: "wind100_prob_ge_15ms.mp4" },
+        { label: "≥ 20 m/s", file: "wind100_prob_ge_20ms.mp4" },
+        { label: "≥ 25 m/s", file: "wind100_prob_ge_25ms.mp4" },
+        { label: "≥ 30 m/s", file: "wind100_prob_ge_30ms.mp4" }
+    ],
+    wind850: [
+        { label: "≥ 15 m/s", file: "wind850_prob_ge_15ms.mp4" },
+        { label: "≥ 20 m/s", file: "wind850_prob_ge_20ms.mp4" },
+        { label: "≥ 25 m/s", file: "wind850_prob_ge_25ms.mp4" },
+        { label: "≥ 30 m/s", file: "wind850_prob_ge_30ms.mp4" }
+    ],
+    z500: [
+        { label: "≤ 5700 m", file: "z500_prob_le_5700m.mp4" },
+        { label: "≤ 5520 m", file: "z500_prob_le_5520m.mp4" },
+        { label: "≤ 5400 m", file: "z500_prob_le_5400m.mp4" }
+    ]
+};
+
+function setActiveButton(buttons, selectedButton) {
+    buttons.forEach(button => button.classList.remove("active"));
+    if (selectedButton) selectedButton.classList.add("active");
+}
+
+function renderProbabilityThresholds() {
+    const thresholds = probabilityThresholds[currentEnsembleVariable] || [];
+    ensembleThresholdButtons.innerHTML = "";
+    currentProbabilityThreshold = thresholds[0] || null;
+
+    thresholds.forEach((threshold, index) => {
+        const button = document.createElement("button");
+        button.className = "ensemble-threshold-btn";
+        button.textContent = threshold.label;
+
+        if (index === 0) button.classList.add("active");
+
+        button.addEventListener("click", function() {
+            setActiveButton(ensembleThresholdButtons.querySelectorAll("button"), this);
+            currentProbabilityThreshold = threshold;
+            updateEnsembleVideo();
+        });
+
+        ensembleThresholdButtons.appendChild(button);
+    });
+}
 
 function updateEnsembleVideo() {
+    let videoPath = "";
+    let modeLabel = "";
 
-    const filename =
-        currentEnsembleVariable + "_" + currentEnsembleMode + ".mp4";
+    if (currentEnsembleMode === "probability") {
+        if (!currentProbabilityThreshold) return;
+        videoPath = "assets/aifs/ensemble/probability/" +
+            currentEnsembleVariable + "/" + currentProbabilityThreshold.file;
+        modeLabel = " · Probability " + currentProbabilityThreshold.label;
+    } else {
+        const filename = currentEnsembleVariable + "_" + currentEnsembleMode + ".mp4";
+        videoPath = "assets/aifs/ensemble/" + currentEnsembleMode + "/" + filename;
+        modeLabel = currentEnsembleMode === "mean"
+            ? " · Ensemble Mean"
+            : " · Ensemble Spread";
+    }
 
-    ensembleVideo.src =
-        "assets/aifs/ensemble/" +
-        currentEnsembleMode + "/" + filename;
-
+    ensembleVideo.pause();
+    ensembleVideo.src = videoPath;
     ensembleVideo.load();
 
     ensembleCurrentVariable.textContent = currentEnsembleTitle;
+    ensembleCurrentMode.textContent = modeLabel;
 
-    ensembleCurrentMode.textContent =
-        currentEnsembleMode === "mean"
-            ? " · Ensemble Mean"
-            : " · Ensemble Spread";
+    if (currentEnsembleMode === "probability") {
+        ensembleNote.textContent =
+            "Probability maps show the percentage of the 11 ensemble members " +
+            "meeting the selected threshold at each grid point. Values range from 0% to 100%.";
+    } else if (currentEnsembleMode === "mean") {
+        ensembleNote.textContent =
+            "Ensemble Mean represents the average forecast across the 11 members.";
+    } else {
+        ensembleNote.textContent =
+            "Ensemble Spread represents the sample standard deviation across " +
+            "the 11 members and provides an indication of forecast uncertainty.";
+    }
 
     ensembleVideo.play().catch(() => {});
-
 }
 
-// Mean / Spread selection
-
 ensembleModeButtons.forEach(button => {
-
     button.addEventListener("click", function() {
-
         currentEnsembleMode = this.dataset.mode;
+        setActiveButton(ensembleModeButtons, this);
+        ensembleThresholdArea.hidden = currentEnsembleMode !== "probability";
 
-        ensembleModeButtons.forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-        this.classList.add("active");
-
+        if (currentEnsembleMode === "probability") {
+            renderProbabilityThresholds();
+        } else {
+            currentProbabilityThreshold = null;
+        }
         updateEnsembleVideo();
-
     });
-
 });
 
-// Variable selection
-
 ensembleVariableButtons.forEach(button => {
-
     button.addEventListener("click", function() {
-
         currentEnsembleVariable = this.dataset.variable;
         currentEnsembleTitle = this.dataset.title;
+        setActiveButton(ensembleVariableButtons, this);
 
-        ensembleVariableButtons.forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-        this.classList.add("active");
-
+        if (currentEnsembleMode === "probability") {
+            renderProbabilityThresholds();
+        }
         updateEnsembleVideo();
-
     });
-
 });
 
 </script>
